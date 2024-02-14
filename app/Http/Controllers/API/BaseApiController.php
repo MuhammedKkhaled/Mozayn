@@ -10,7 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller as BaseController;
 use Symfony\Component\HttpFoundation\Response;
 
-class BaseApiController extends  BaseController
+class BaseApiController extends BaseController
 {
     use AuthorizesRequests;
     use ValidatesRequests;
@@ -52,6 +52,7 @@ class BaseApiController extends  BaseController
 
         return $this;
     }
+
     public function getPaginationResponse(LengthAwarePaginator $resource): array
     {
         return [

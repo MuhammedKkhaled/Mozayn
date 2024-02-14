@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Admin\App\Http\Controllers\Api\v1\AdminController;
 
 /*
     |--------------------------------------------------------------------------
@@ -15,7 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1/')->name('api.')->group(function () {
-    Route::post('admin', function (Request $request) {
-        dd($request->all());
-    });
+    Route::post('admin', [AdminController::class, 'createAdmin'])->name('adminCreate');
 });

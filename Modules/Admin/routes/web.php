@@ -14,6 +14,5 @@ use Modules\Admin\App\Http\Controllers\AdminController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('admin', AdminController::class)->names('admin');
-});
+Route::get('/admin' , [AdminController::class , "index"])->name("admin.index");
+

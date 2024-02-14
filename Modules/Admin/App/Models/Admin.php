@@ -2,14 +2,12 @@
 
 namespace Modules\Admin\App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-
 
 class Admin extends Model implements HasMedia
 {
@@ -20,13 +18,13 @@ class Admin extends Model implements HasMedia
      * The attributes that are mass assignable.
      */
     protected $fillable = [
+        'code',
         'admin_name',
         'admin_email',
         'admin_password',
     ];
 
-
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this
             ->addMediaConversion('preview')
@@ -34,16 +32,8 @@ class Admin extends Model implements HasMedia
             ->nonQueued();
     }
 
-
-    /// Mutators and accessors 
-    /**
-     * Interact with the Admin's password.
-     */
-
-    protected function admin_password(): Attribute
+    public function setAdminPasswordAttribute($value): void
     {
-        return Attribute::make(
-            set: fn (string $value) => bcrypt($value)
-        );
+        $this->attributes['admin_password'] = bcrypt($value);
     }
 }
