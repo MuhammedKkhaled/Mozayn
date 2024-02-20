@@ -3,37 +3,47 @@
 namespace Modules\Admin\App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Image\Enums\Fit;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Admin extends Model implements HasMedia
+class Admin extends Authenticatable
 {
+    use HasApiTokens;
     use HasFactory;
-    use InteractsWithMedia;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
      */
     protected $fillable = [
-        'code',
-        'admin_name',
-        'admin_email',
-        'admin_password',
+        'name',
+        'email',
+        'password',
     ];
 
-    public function registerMediaConversions(?Media $media = null): void
-    {
-        $this
-            ->addMediaConversion('preview')
-            ->fit(Fit::Contain, 300, 300)
-            ->nonQueued();
-    }
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+    ];
 
-    public function setAdminPasswordAttribute($value): void
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function setPasswordAttribute($value): void
     {
-        $this->attributes['admin_password'] = bcrypt($value);
+        $this->attributes['password'] = bcrypt($value);
     }
 }

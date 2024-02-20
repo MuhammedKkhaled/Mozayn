@@ -1,5 +1,8 @@
 <?php
 
+use Modules\Admin\App\Models\Admin;
+use Modules\Provider\App\Models\Provider;
+
 return [
 
     /*
@@ -40,6 +43,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'provider' => [
+            'driver' => 'session',
+            'provider' => 'providers',
+        ],
+        'provider-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'providers',
+        ],
     ],
 
     /*
@@ -64,10 +79,18 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => Admin::class,
+        ],
+        'providers' => [
+            'driver' => 'eloquent',
+            'model' => Provider::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'table' => 'use  rs',
         // ],
     ],
 
@@ -94,6 +117,18 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'admin_password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'providers' => [
+            'provider' => 'providers',
+            'table' => 'provider_password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
         ],

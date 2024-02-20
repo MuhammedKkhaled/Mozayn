@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Admin\App\Http\Controllers\AdminController;
+use Modules\Admin\App\Http\Controllers\AdminHomeController;
+use Modules\Admin\App\Http\Controllers\Auth\AdminAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,23 @@ use Modules\Admin\App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/admin' , [AdminController::class , "index"])->name("admin.index");
+/****************************** Admin Routes * ***********/
 
+Route::prefix('admin/dashboard/')->name('admin.dashboard.')->group(function () {
+    Route::get('home', [AdminHomeController::class, 'index'])->name('home')->middleware('auth:admin');
+    Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [AdminAuthController::class, 'login'])->name('login');
+    Route::get('register', [AdminAuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('register', [AdminAuthController::class, 'register'])->name('register');
+    Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
+
+});
+
+/******************************* End Admin Routes* **********/
+//Route::prefix('admin/dashboard/')->name('admin.dashboard.')->group(function () {
+//    Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('login');
+//    Route::post('login', [AdminAuthController::class, 'login'])->name('login');
+//    Route::get('register', [AdminAuthController::class, 'showRegisterForm'])->name('register');
+//    Route::post('register', [AdminAuthController::class, 'register'])->name('register');
+//
+//});

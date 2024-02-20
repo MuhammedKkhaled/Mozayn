@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class() extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('name'); // Provider name is Business name
+            $table->string('desc'); // Provider Description is Business Description
+            $table->string('email');
+            $table->string('password');
             $table->timestamps();
         });
     }

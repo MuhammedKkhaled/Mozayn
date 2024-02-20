@@ -34,7 +34,7 @@ class StoreAdminRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'admin_name.required' => 'The ssssssssss Is required Filed ',
+            'admin_name.required' => 'The Admin Name Is required Filed ',
             'admin_name.min' => 'The Name lesser than 3 chars',
             'admin_email.required' => 'The email field is required.',
             'admin_email.email' => 'The email must be a valid email address.',
