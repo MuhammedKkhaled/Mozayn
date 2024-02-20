@@ -1,4 +1,5 @@
 {
     "Admin": true,
-    "Provider": true
+    "Provider": true,
+    "Branch": true
 }

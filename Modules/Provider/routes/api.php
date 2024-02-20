@@ -17,10 +17,11 @@ use Modules\Provider\App\Http\Controllers\Api\ProviderAuthController;
 
 /**************************** Provider Routes************/
 
-Route::prefix('v1')->name('api.vi')->group(function () {
+Route::prefix('v1')->name('api.v1')->group(function () {
     Route::post('provider-Registration', [ProviderAuthController::class, 'register']);
     Route::post('provider-login', [ProviderAuthController::class, 'login']);
-    Route::post('provider-logout', [ProviderAuthController::class, 'logout'])->middleware("auth:sanctum");
+    Route::post('provider-logout', [ProviderAuthController::class, 'logout'])->middleware('auth:sanctum');
+
 });
 
 /****************************End Provider Routes************/
