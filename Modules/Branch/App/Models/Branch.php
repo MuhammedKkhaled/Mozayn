@@ -4,6 +4,8 @@ namespace Modules\Branch\App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Provider\App\Models\Provider;
 
 class Branch extends Model
 {
@@ -18,13 +20,23 @@ class Branch extends Model
         'social_media_links' => 'array',
     ];
 
+    /**
+     * Define the inverse one-to-many relationship with Provider model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function provider(): BelongsTo
+    {
+        return $this->belongsTo(Provider::class);
+    }
+
     /************************ Mutators And Accessors************************************/
     public function setSocial_media_linksAttribute($value)
     {
         $links = [];
 
         foreach ($value as $array_item) {
-            if (! is_null($array_item['key'])) {
+            if (!is_null($array_item['key'])) {
                 $links[] = $array_item;
             }
         }

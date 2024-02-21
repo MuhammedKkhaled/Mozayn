@@ -15,7 +15,7 @@ return new class() extends Migration
             $table->id();
             $table->string('name'); // Provider name is Business name
             $table->string('desc'); // Provider Description is Business Description
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
         });

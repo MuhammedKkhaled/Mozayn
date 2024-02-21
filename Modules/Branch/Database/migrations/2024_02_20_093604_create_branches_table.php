@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('branch_location');
             $table->string('phone');
             $table->json('social_media_links')->nullable();
+            $table->unsignedBigInteger('provider_id'); // Foreign key column
             $table->timestamps();
+            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
