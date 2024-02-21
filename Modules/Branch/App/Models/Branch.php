@@ -14,7 +14,13 @@ class Branch extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['branch_name', 'branch_location', 'phone', 'social_media_links'];
+    protected $fillable = [
+        'branch_name',
+        'branch_location',
+        'phone',
+        'social_media_links',
+        'provider_id',
+    ];
 
     protected $casts = [
         'social_media_links' => 'array',
@@ -22,12 +28,10 @@ class Branch extends Model
 
     /**
      * Define the inverse one-to-many relationship with Provider model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function provider(): BelongsTo
     {
-        return $this->belongsTo(Provider::class);
+        return $this->belongsTo(Provider::class, 'provider_id');
     }
 
     /************************ Mutators And Accessors************************************/
@@ -36,7 +40,7 @@ class Branch extends Model
         $links = [];
 
         foreach ($value as $array_item) {
-            if (!is_null($array_item['key'])) {
+            if (! is_null($array_item['key'])) {
                 $links[] = $array_item;
             }
         }

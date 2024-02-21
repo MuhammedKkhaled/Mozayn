@@ -4,6 +4,7 @@ namespace Modules\Admin\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Branch\App\Models\Branch;
 use Modules\Provider\App\Models\Provider;
 
 class AdminHomeController extends Controller
@@ -37,7 +38,8 @@ class AdminHomeController extends Controller
      */
     public function show($id)
     {
-        return view('admin::show');
+        $branch = Branch::with("provider")->findOrFail($id) ;
+        return view('admin::pages.branchDetails' , compact("branch"));
     }
 
     /**
@@ -66,7 +68,16 @@ class AdminHomeController extends Controller
 
     public function showProvidersPage()
     {
-        $providers = Provider::all();
-        return view("admin::pages.providers" , compact("providers"));
+        //        $providers = Provider::all();
+        $providers = Provider::with('branches')->get();
+
+        return view('admin::pages.providers', compact('providers'));
+    }
+
+    public function allBranches()
+    {
+        $branches = Branch::with('provider')->get();
+
+        return view('admin::pages.branches', compact('branches'));
     }
 }

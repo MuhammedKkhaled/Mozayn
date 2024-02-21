@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Modules\Branch\App\Http\Controllers\Api\BranchController;
 
 /*
     |--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ use Modules\Branch\App\Http\Controllers\Api\BranchController;
     |
 */
 
-Route::middleware('auth:provider-api')->prefix('v1/')->name('api.v1.')->group(function () {
-    Route::post('branches', [BranchController::class, 'store'])->name('branches.store');
+Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
+    Route::get('service', fn (Request $request) => $request->user())->name('service');
 });

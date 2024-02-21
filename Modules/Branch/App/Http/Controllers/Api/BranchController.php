@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Branch\App\Http\Controllers;
+namespace Modules\Branch\App\Http\Controllers\Api;
 
 use App\Http\Controllers\API\BaseApiController;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Modules\Branch\App\Http\Requests\BranchStoreRequest;
 use Modules\Branch\App\Services\BranchService;
 
@@ -17,7 +17,7 @@ class BranchController extends BaseApiController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(BranchStoreRequest $request)
+    public function store(BranchStoreRequest $request): JsonResponse
     {
 
         $data = $this->branchService->store($request);

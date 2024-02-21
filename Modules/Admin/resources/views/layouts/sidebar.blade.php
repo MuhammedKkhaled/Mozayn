@@ -537,7 +537,7 @@
                   <div class="collapse menu-dropdown" id="sidebarPages">
                       <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
-                              <a href="{{"#"}}" class="nav-link" data-key="t-starter">Branches</a>
+                              <a href="{{ route("admin.dashboard.branches") }}" class="nav-link" data-key="t-starter">Branches</a>
                           </li>
 {{--                          <li class="nav-item">--}}
 {{--                              <a href="#sidebarProfile" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProfile" data-key="t-profile"> Profile--}}

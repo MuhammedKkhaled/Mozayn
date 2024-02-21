@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Branch\App\Http\Controllers\Api\BranchController;
+use Modules\Service\App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +15,5 @@ use Modules\Branch\App\Http\Controllers\Api\BranchController;
 */
 
 Route::group([], function () {
-    Route::resource('branch', BranchController::class)->names('branch');
+    Route::resource('service', ServiceController::class)->names('service');
 });

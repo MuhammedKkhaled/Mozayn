@@ -3,6 +3,7 @@
 namespace Modules\Provider\App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -40,10 +41,8 @@ class Provider extends Authenticatable implements HasMedia
 
     /**
      * Define the one-to-many relationship with Branch model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function branches()
+    public function branches(): HasMany
     {
         return $this->hasMany(Branch::class);
     }

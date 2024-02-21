@@ -18,7 +18,7 @@ use Modules\Admin\App\Http\Controllers\Auth\AdminAuthController;
 /****************************** Admin Routes * ***********/
 
 /**
-* Public Routes For Admin
+ * Public Routes For Admin
  */
 Route::prefix('admin/dashboard/')->name('admin.dashboard.')->group(function () {
     Route::get('home', [AdminHomeController::class, 'index'])->name('home')->middleware('auth:admin');
@@ -33,13 +33,13 @@ Route::prefix('admin/dashboard/')->name('admin.dashboard.')->group(function () {
 /**
  * Protected Routes
  */
-
 Route::middleware('auth:admin')
-    ->prefix("admin/dashboard/")
-    ->name("admin.dashboard.")
-    ->group(function (){
-    Route::get("providers", [AdminHomeController::class , "showProvidersPage"])->name("providers");
-
-});
+    ->prefix('admin/dashboard/')
+    ->name('admin.dashboard.')
+    ->group(function () {
+        Route::get('providers', [AdminHomeController::class, 'showProvidersPage'])->name('providers');
+        Route::get('branches', [AdminHomeController::class, 'allBranches'])->name('branches');
+        Route::get('branches/{id}', [AdminHomeController::class, 'show'])->name('branches.show');
+    });
 
 /******************************* End Admin Routes* **********/
