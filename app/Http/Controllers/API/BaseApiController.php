@@ -19,7 +19,7 @@ class BaseApiController extends BaseController
 
     private int $statusCode = Response::HTTP_OK;
 
-    public function addToResponse(string $dataWrap , array $data): static
+    public function addToResponse(string $dataWrap, array $data): static
     {
         $this->response += [$dataWrap => $data];
 

@@ -4,6 +4,7 @@ namespace Modules\Admin\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Provider\App\Models\Provider;
 
 class AdminHomeController extends Controller
 {
@@ -61,5 +62,11 @@ class AdminHomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showProvidersPage()
+    {
+        $providers = Provider::all();
+        return view("admin::pages.providers" , compact("providers"));
     }
 }

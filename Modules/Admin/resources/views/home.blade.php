@@ -5,7 +5,7 @@
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
-            <h1>Arabia Fuck Boy Welcome :  {{ Auth::guard("admin")->user()->name  }}</h1>
+            <h1>Hello MR  :  {{ Auth::guard("admin")->user()->name  }}</h1>
         </div>
     </div>
 </div>
